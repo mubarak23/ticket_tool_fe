@@ -1,43 +1,43 @@
-import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+import React from "react";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import * as IoIcons from "react-icons/io";
 
 export const SidebarData = [
   {
-    title: 'Ticket',
-    path: '/',
+    title: "Home",
+    path: "/",
     icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Actions',
-    path: '/reports',
+    title: "Ticket",
+    path: "/ticket",
+    icon: <AiIcons.AiFillHome />,
+    cName: "nav-text",
+  },
+  {
+    title: "Actions",
+    path: "/actions",
     icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Status',
-    path: '/products',
+    title: "Status",
+    path: "/status",
     icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Status',
-    path: '/team',
-    icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'History',
-    path: '/messages',
+    title: "History",
+    path: "/history",
     icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Close Ticket',
-    path: '/support',
+    title: "Close Ticket",
+    path: "/support",
     icon: <IoIcons.IoMdHelpCircle />,
-    cName: 'nav-text'
-  }
+    cName: "nav-text",
+  },
 ];

@@ -6,9 +6,10 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 
-const Navbar = () => {
+function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => showSidebar(!false);
+
+  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
@@ -40,6 +41,6 @@ const Navbar = () => {
       </IconContext.Provider>
     </>
   );
-};
+}
 
 export default Navbar;
