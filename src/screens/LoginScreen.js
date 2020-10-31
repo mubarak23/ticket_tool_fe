@@ -10,12 +10,12 @@ const LoginScreen = () => {
 
   const HandleLogin = async (e) => {
     e.preventDefault();
-    const user_data = {
-      email,
-      password,
-    };
+
     try {
-      const user_login = await axios.post("api/auth/AuthLogin", { user_data });
+      const user_login = await axios.post(
+        "http://127.0.0.1:8000/api/auth/AuthLogin",
+        { email, password }
+      );
       console.log(user_login);
     } catch (error) {
       console.log(error);
