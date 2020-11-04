@@ -7,6 +7,7 @@ import Action from "./screens/ActionScreen";
 import Status from "./screens/StatusScreen";
 import History from "./screens/HsitoryScreen";
 import Login from "./screens/LoginScreen";
+import Register from "./screens/RegisterScreen";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/Home" component={Home} />
           <Route path="/ticket" component={Ticket} />
           <Route path="/actions" component={Action} />
