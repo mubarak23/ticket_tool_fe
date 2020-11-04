@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { Container, Row, Col } from "react-bootstrap";
 
-const HomeScreen = () => {
+const HomeScreen = ({ history }) => {
+  const redirect = "/";
+  useEffect(() => {
+    const userLogin = localStorage.getItem("userLogin");
+    if (!userLogin) {
+      history.push(redirect);
+    }
+  }, [history, redirect]);
   return (
     <div>
       <Navbar />

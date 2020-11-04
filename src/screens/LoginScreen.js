@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import axios from "axios";
 
-const LoginScreen = () => {
+const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,12 +12,18 @@ const LoginScreen = () => {
     e.preventDefault();
 
     try {
-      const user_login = await axios.post(
-        "http://127.0.0.1:8000/api/auth/AuthLogin",
-        { email, password }
+      const { data } = await axios.post(
+        "http://127.0.0.1:8001/api/auth/AuthLogin",
+        {
+          email,
+          password,
+        }
       );
-      console.log(user_login);
+      console.log(data);
+      localStorage.setItem("userLogin", JSON.stringify(data));
+      history.push("home");
     } catch (error) {
+      alert(error);
       console.log(error);
     }
   };
