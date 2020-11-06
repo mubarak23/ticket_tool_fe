@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 //import Navbar from "../components/Navbar";
+import NavSide from "../components/NavSide";
 import "../App.css";
 import { Container, Row, Col } from "react-bootstrap";
-import "../style.css";
+//import "../style.css";
+import "../custom.css";
 
 const HomeScreen = ({ history }) => {
   const redirect = "/";
@@ -14,113 +16,204 @@ const HomeScreen = ({ history }) => {
   }, [history, redirect]);
   return (
     <div>
-      <div className="sidebar">
-        <a className="active" href="posdashboard.html">
-          ISSUE TYPE
-        </a>
-        <a href="actions.html">ACTIONS</a>
-        <a href="status.html">STATUS</a>
-        <a href="history.html">HISTORY</a>
-      </div>
-      <div className="navbar">
-        <div className="container">
-          <div class="user">
-            <div className="user1" style={{ display: "inline-block" }}>
-              <h6>WELCOME</h6>
+      <NavSide />
+      <form id="posIssue">
+        <div className="part">
+          <div className="container">
+            <div className="row1">
+              <div className="caseid">
+                <div className="caseid1" style={{ display: "inline-block" }}>
+                  <h6>CASE ID: </h6>
+                </div>
+                <div className="caseid2" style={{ display: "inline-block" }}>
+                  <h6 id="case_id" name="case_id"></h6>
+                </div>
+              </div>
+              <div className="rowhead">
+                <div className="rowhead_header">
+                  <h6>AGENT DETAILS</h6>
+                </div>
+                <div className="rowbody_body">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="MA_name"
+                          placeholder="NAME"
+                          value=""
+                          name="MA_name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="MA_email"
+                          placeholder="EMAIL"
+                          value=""
+                          name="MA_email"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="tel"
+                          className="form-control"
+                          id="MA_phone"
+                          placeholder="PHONE NUMBER"
+                          value=""
+                          name="MA_phone"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="MA_terminal_id"
+                          placeholder="TERMINAL ID"
+                          value=""
+                          name="MA_terminal_id"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              className="user2"
-              style={{ display: "inline-block" }}
-              //style={{ text-transform: "uppercase" }}
-              //style="display: inline-block; text-transform: uppercase;"
-            >
-              <h6 id="username"></h6>
+
+            <div className="row2">
+              <div className="rowhead">
+                <div className="rowhead_header">
+                  <h6>ISSUE</h6>
+                </div>
+                <div className="rowbody_body">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <select name="issue" className="form-input" id="issue">
+                          <option>SELECT ISSUE</option>
+                          <option>
+                            PERR1:Transaction declined but customer's account
+                            was debited
+                          </option>
+                          <option>
+                            PERR2: Transaction approved but agent's wallet was
+                            not credited
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="reference_id"
+                          placeholder="ENTER REFERENCE ID"
+                          value=""
+                          name="reference_id"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="RRN"
+                          placeholder="ENTER RRN (POS)"
+                          value=""
+                          name="RRN"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="amount"
+                          min="0"
+                          placeholder="&#8358; AMOUNT"
+                          value=""
+                          name="amount"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <textarea
+                          className="form-control"
+                          id="comment"
+                          placeholder="COMMENTS"
+                          rows="4"
+                          value=""
+                          maxlength="150"
+                          name="comment"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row3">
+              <div className="rowhead">
+                <div className="rowhead_header">
+                  <h6>ASSIGN ISSUE TO</h6>
+                </div>
+                <div className="rowbody_body">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <select
+                          name="assign_to"
+                          className="form-input"
+                          id="assign_to"
+                        >
+                          <option>SELECT DEPARTMENT</option>
+                          <option>OPERATIONS</option>
+                          <option>FINANCE</option>
+                          <option>TECHNOLOGY</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="assign_to_email"
+                          placeholder="EMAIL ADDRESS"
+                          value=""
+                          name="assign_to_email"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row4">
+              <div className="button">
+                <div className="row">
+                  <div class="col-md-12">
+                    <input
+                      type="submit"
+                      action="post"
+                      className="butttonarea1"
+                      value="SEND"
+                      id="posSubmit"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <button
-            type="submit"
-            class="btn signout"
-            id="pos-signout"
-            onclick="signOut()"
-          >
-            SIGN OUT
-          </button>
         </div>
-      </div>
-      <div className="head_links">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-3">
-              <a href="posdashboard.html">
-                <div className="head_link1 pos-container">
-                  <div className="lhs3" style={{ display: "inline-block" }}>
-                    <h6>POS</h6>
-                  </div>
-                  <div className="rhs3" style={{ display: "inline-block" }}>
-                    <img
-                      alt="pos"
-                      src={process.env.PUBLIC_URL + "/img/9.jpg"}
-                      //src="../../public/img/9.jpg"
-                      className="img-fluid pos-image"
-                    />
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col-sm-3">
-              <a href="transferdashboard.html">
-                <div className="head_link2">
-                  <div className="lhs3" style={{ display: "inline-block" }}>
-                    <h6>TRANSFER</h6>
-                  </div>
-                  <div className="rhs3" style={{ display: "inline-block" }}>
-                    <img
-                      alt="transfer"
-                      src={process.env.PUBLIC_URL + "/img/10.jpg"}
-                      //src="assets/img/10.jpg"
-                      className="img-fluid pos-image1"
-                    />
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col-sm-3">
-              <a href="walletsdashboard.html">
-                <div className="head_link4 pos-container">
-                  <div className="lhs3" style={{ display: "inline-block" }}>
-                    <h6>WALLET</h6>
-                  </div>
-                  <div className="" style={{ display: "inline-block" }}>
-                    <img
-                      alt="wallet"
-                      src={process.env.PUBLIC_URL + "/img/12.jpg"}
-                      //src="assets/img/12.jpg"
-                      className="img-fluid pos-image2"
-                    />
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="col-sm-3">
-              <a href="othersdashboard.html">
-                <div className="head_link3 pos-container">
-                  <div className="lhs3" style={{ display: "inline-block" }}>
-                    <h6>OTHERS</h6>
-                  </div>
-                  <div className="rhs3" style={{ display: "inline-block" }}>
-                    <img
-                      alt="others"
-                      src={process.env.PUBLIC_URL + "/img/11.jpg"}
-                      //src="assets/img/11.jpg"
-                      className="img-fluid pos-image3"
-                    />
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>{" "}
+      </form>
     </div>
   );
 };
