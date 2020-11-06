@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 //import Navbar from "../components/Navbar";
 import NavSide from "../components/NavSide";
+import axios from "axios";
 import "../App.css";
 import Footer from "../components/Footer";
 //import "../style.css";
@@ -25,7 +26,7 @@ const HomeScreen = ({ history }) => {
   const redirect = "/";
   useEffect(() => {
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
-    console.log(userLogin.user_id);
+    console.log(userLogin.token);
     setSubmitted_by(userLogin.full_name);
     setUser_id(userLogin.user_id);
     setCase_id("5687904");
@@ -35,9 +36,10 @@ const HomeScreen = ({ history }) => {
     }
   }, [history, redirect]);
 
-  const handleIssueCreate = (e) => {
+  const handleIssueCreate = async (e) => {
     e.preventDefault();
-    const data = {
+    const userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    const createIssue = {
       case_id,
       user_id,
       submitted_by,
@@ -54,7 +56,26 @@ const HomeScreen = ({ history }) => {
       assign_to,
       assign_to_email,
     };
-    console.log(data);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userLogin.token}`,
+      },
+    };
+
+    try {
+      const { data } = await axios.post(
+        "http://127.0.0.1:8001/api/ticket/create_ticket",
+        createIssue,
+        config
+      );
+
+      console.log(data);
+      history.push("/actions");
+    } catch (error) {
+      alert(error);
+      console.log(error);
+    }
   };
   return (
     <div>
