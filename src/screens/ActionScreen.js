@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavSide from "../components/NavSide";
-const ActionScreen = () => {
+const ActionScreen = ({ history }) => {
   const [user_id, setUser_id] = useState("");
+  const ticket_lists = async () => {
+    return await axios.get(
+      `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
+    );
+  };
   useEffect(() => {
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
     setUser_id(userLogin.user_id);
@@ -10,10 +15,8 @@ const ActionScreen = () => {
       history.push("/");
     } else {
       //fetch data from the all ticket for login user
-      const { data } = axios.get(
-        `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
-      );
-      console.log(data);
+      const data = ticket_lists();
+      console.log(data.message);
     }
   }, [history]);
 
