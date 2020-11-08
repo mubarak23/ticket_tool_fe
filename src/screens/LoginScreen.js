@@ -13,7 +13,7 @@ const LoginScreen = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "http://127.0.0.1:8001/api/auth/AuthLogin",
+        "https://intense-escarpment-06842.herokuapp.com/api/auth/AuthLogin",
         {
           email,
           password,

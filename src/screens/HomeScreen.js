@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 //import Navbar from "../components/Navbar";
 import NavSide from "../components/NavSide";
+import alphanumericRandom from "alphanumeric-random-string-generator";
 import axios from "axios";
 import "../App.css";
 import Footer from "../components/Footer";
@@ -29,7 +30,7 @@ const HomeScreen = ({ history }) => {
     console.log(userLogin.token);
     setSubmitted_by(userLogin.full_name);
     setUser_id(userLogin.user_id);
-    setCase_id("5687904");
+    setCase_id(alphanumericRandom(10));
     setIssue_type("POS");
     if (!userLogin) {
       history.push(redirect);
@@ -39,6 +40,7 @@ const HomeScreen = ({ history }) => {
   const handleIssueCreate = async (e) => {
     e.preventDefault();
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    console.log(case_id);
     const createIssue = {
       case_id,
       user_id,
@@ -65,7 +67,7 @@ const HomeScreen = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "http://127.0.0.1:8001/api/ticket/create_ticket",
+        "https://intense-escarpment-06842.herokuapp.com/api/ticket/create_ticket",
         createIssue,
         config
       );
