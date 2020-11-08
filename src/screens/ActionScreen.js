@@ -3,20 +3,29 @@ import axios from "axios";
 import NavSide from "../components/NavSide";
 const ActionScreen = ({ history }) => {
   const [user_id, setUser_id] = useState("");
-  const ticket_lists = async () => {
-    return await axios.get(
-      `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
-    );
-  };
+  const [tickets, setTickets] = useState("");
+  //const ticket_lists = async () => {
+  //return await axios.get(
+  //`https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
+  //);
+  //};
   useEffect(() => {
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
     setUser_id(userLogin.user_id);
+    console.log(user_id);
     if (!userLogin) {
       history.push("/");
     } else {
       //fetch data from the all ticket for login user
-      const data = ticket_lists();
-      console.log(data.message);
+      const fetchTickets = async () => {
+        const { data } = await axios.get(
+          `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
+        );
+        setTickets(data);
+        const res = JSON.stringify(data);
+        console.log(JSON.stringify(data));
+      };
+      fetchTickets();
     }
   }, [history]);
 
