@@ -13,7 +13,9 @@ const ActionScreen = ({ history }) => {
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
     setUser_id(userLogin.user_id);
     console.log(user_id);
-    const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
+    //const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
+    //const url = "http://127.0.0.1:8001/api/ticket/user_ticket_lists/1";
+    const url = `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/1`;
     console.log(url);
     if (!userLogin) {
       history.push("/");
@@ -21,14 +23,13 @@ const ActionScreen = ({ history }) => {
       //fetch data from the all ticket for login user
       const fetchTickets = async () => {
         const { data } = await axios.get(url);
-
         const res = JSON.stringify(data);
         console.log(res);
         console.log(user_id);
         setTickets(data);
       };
-      fetchTickets();
       console.log(url);
+      fetchTickets();
     }
   }, [history]);
 
@@ -122,8 +123,10 @@ const ActionScreen = ({ history }) => {
                   <th scope="col"></th>
                   <th scope="col">CASE ID</th>
                   <th scope="col">ISSUE</th>
+                  <th scope="col">ISSUE TYPE</th>
                   <th scope="col">SUMBITTED BY</th>
                   <th scope="col">ASSIGNED TO</th>
+                  <th scope="col">CREATED ON</th>
                 </tr>
               </thead>
 
@@ -133,8 +136,10 @@ const ActionScreen = ({ history }) => {
                     <td key={ticket.id}></td>
                     <td>{ticket.case_id}</td>
                     <td>{ticket.issue}</td>
+                    <td>{ticket.issue_type}</td>
                     <td>{ticket.submitted_by}</td>
                     <td>{ticket.assign_to}</td>
+                    <td>{ticket.created_at}</td>
                   </tr>
                 ))}
               </tbody>
