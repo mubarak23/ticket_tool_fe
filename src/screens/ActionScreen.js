@@ -13,19 +13,22 @@ const ActionScreen = ({ history }) => {
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
     setUser_id(userLogin.user_id);
     console.log(user_id);
+    const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
+    console.log(url);
     if (!userLogin) {
       history.push("/");
     } else {
       //fetch data from the all ticket for login user
       const fetchTickets = async () => {
-        const { data } = await axios.get(
-          `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
-        );
-        setTickets(data);
+        const { data } = await axios.get(url);
+
         const res = JSON.stringify(data);
-        console.log(JSON.stringify(data));
+        console.log(res);
+        console.log(user_id);
+        setTickets(data);
       };
       fetchTickets();
+      console.log(url);
     }
   }, [history]);
 
@@ -125,17 +128,15 @@ const ActionScreen = ({ history }) => {
               </thead>
 
               <tbody>
-                <tr>
-                  <td>
-                    <div className="box0" style={{ display: "inline-block" }}>
-                      <input type="checkbox" />
-                    </div>
-                  </td>
-                  <td>ig9XsAYEEX</td>
-                  <td>POS Fail</td>
-                  <td>User 1</td>
-                  <td>Technology</td>
-                </tr>
+                {tickets.map((ticket) => (
+                  <tr>
+                    <td key={ticket.id}></td>
+                    <td>{ticket.case_id}</td>
+                    <td>{ticket.issue}</td>
+                    <td>{ticket.submitted_by}</td>
+                    <td>{ticket.assign_to}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
