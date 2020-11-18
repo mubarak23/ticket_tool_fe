@@ -1,36 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import axios from "axios";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import { login } from "../actions/userActions.js";
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const HandleLogin = async (e) => {
-    e.preventDefault();
+  const dispatch = useDispatch();
 
-    try {
-      const { data } = await axios.post(
-        "https://intense-escarpment-06842.herokuapp.com/api/auth/AuthLogin",
-        {
-          email,
-          password,
-        }
-      );
-      console.log(data);
-      localStorage.setItem("userLogin", JSON.stringify(data));
-      history.push("home");
-    } catch (error) {
-      alert(error);
-      console.log(error);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  //const redirect = location.search ? location.search.split("=")[1] : "/";
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/home");
     }
+  }, [history, userInfo]);
+
+  const HandleLogin = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
   };
+  //const HandleLogin = async (e) => {
+  //e.preventDefault();
+
+  //try {
+  // const { data } = await axios.post(
+  //"https://intense-escarpment-06842.herokuapp.com/api/auth/AuthLogin",
+  // {
+  // email,
+  // password,
+  // }
+  //);
+  //console.log(data);
+  //localStorage.setItem("userLogin", JSON.stringify(data));
+  //history.push("home");
+  //} catch (error) {
+  //alert(error);
+  //console.log(error);
+  //}
+  //};
 
   return (
     <FormContainer>
       <h2>SignIn</h2>
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
       <Form onSubmit={HandleLogin}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>

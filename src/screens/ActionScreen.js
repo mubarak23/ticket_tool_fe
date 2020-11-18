@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import NavSide from "../components/NavSide";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+
 const ActionScreen = ({ history }) => {
   const [user_id, setUser_id] = useState("");
   const [tickets, setTickets] = useState("");
@@ -9,13 +13,16 @@ const ActionScreen = ({ history }) => {
   //`https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
   //);
   //};
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
   useEffect(() => {
     const userLogin = JSON.parse(localStorage.getItem("userLogin"));
     setUser_id(userLogin.user_id);
     console.log(user_id);
-    //const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
+    const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
     //const url = "http://127.0.0.1:8001/api/ticket/user_ticket_lists/1";
-    const url = `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/1`;
+    //const url = `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/1`;
     console.log(url);
     if (!userLogin) {
       history.push("/");

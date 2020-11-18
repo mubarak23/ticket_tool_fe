@@ -20,14 +20,14 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-
+    console.log(data);
     dispatch({
       type: USER_LOGIN_SUCCESS,
-      payload: JSON.stringify(data),
+      payload: data,
     });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
-  } catch (errro) {
+  } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:

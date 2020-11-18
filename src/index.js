@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
-import store from "store.js";
+import store from "./store.js";
 import App from "./App";
 import "./index.css";
 import "./bootstrap.min.css";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <Provider sttore={store}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")
