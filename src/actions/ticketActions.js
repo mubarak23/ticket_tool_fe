@@ -22,7 +22,9 @@ export const myticketlist = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/ticket/user_ticket_lists/${id}`);
+    const { data } = await axios.get(
+      `http://localhost:8003/api/ticket/user_ticket_lists/${id}`
+    );
     dispatch({
       type: TICKET_LISTS_SUCCESS,
       payload: data,
@@ -39,7 +41,8 @@ export const myticketlist = (id) => async (dispatch, getState) => {
   }
 };
 
-export const singleticket = (id, case_id) => async (dispatch, getState) => {
+export const singleticket = (case_id) => async (dispatch, getState) => {
+  console.log(case_id);
   try {
     dispatch({ type: SINGLE_TICKET_REQUEST });
 
@@ -54,7 +57,7 @@ export const singleticket = (id, case_id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `/api/ticket/ticket_details/${id}/${case_id}`,
+      `http://localhost:8003/api/ticket/ticket_details/${userInfo.user_id}/${case_id}`,
       config
     );
     dispatch({
