@@ -54,7 +54,8 @@ export const singleticket = (id, case_id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `/api/ticket/ticket_details/${id}/${case_id}`
+      `/api/ticket/ticket_details/${id}/${case_id}`,
+      config
     );
     dispatch({
       type: SINGLE_TICKET_SUCCESS,

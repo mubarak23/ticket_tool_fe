@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { singleticket } from "../actions/ticketActions.js";
 
 const SingleTicket = ({ match, history }) => {
   const ticket_case_id = match.params.case_id;
@@ -12,10 +13,21 @@ const SingleTicket = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  useEffect(() => {}, [dispatch, history, userInfo]);
+  const ticket = useSelector((state) => state.singleTicket);
+  console.log(ticketlist);
+  const { loading, error, single_ticket } = ticket;
+
+  useEffect(() => {
+    if (userInfo) {
+    } else {
+    }
+  }, [dispatch, history, userInfo]);
+
   return (
     <div>
       <NavSide />
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
       <div className="part">
         <div className="container">
           <div className="history_row">
