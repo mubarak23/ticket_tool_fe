@@ -26,7 +26,7 @@ export const myticketlist = (id) => async (dispatch, getState) => {
     });
   } catch (error) {
     dispatch({
-      type: USER_LOGIN_FAIL,
+      type: TICKET_LISTS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

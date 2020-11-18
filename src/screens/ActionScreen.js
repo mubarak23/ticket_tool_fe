@@ -4,41 +4,50 @@ import axios from "axios";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { myticketlist } from "../actions/ticketActions.js";
 
 const ActionScreen = ({ history }) => {
   const [user_id, setUser_id] = useState("");
-  const [tickets, setTickets] = useState("");
+  //const [tickets, setTickets] = useState("");
+
+  const dispatch = useDispatch();
+  const ticketlist = useSelector((state) => state.ticketlist);
+  const { loading, error, tickets } = ticketlist;
+  console.log(tickets);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   //const ticket_lists = async () => {
   //return await axios.get(
   //`https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/${user_id}`
   //);
   //};
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
 
   useEffect(() => {
-    const userLogin = JSON.parse(localStorage.getItem("userLogin"));
     setUser_id(userLogin.user_id);
     console.log(user_id);
     const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
     //const url = "http://127.0.0.1:8001/api/ticket/user_ticket_lists/1";
     //const url = `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/1`;
-    console.log(url);
-    if (!userLogin) {
-      history.push("/");
+    console.log(userInfo.id);
+    if (userLogin) {
+      dispatch(myticketlist(userInfo.user_id));
+      console.log(tickets);
     } else {
+      history.push("/");
       //fetch data from the all ticket for login user
-      const fetchTickets = async () => {
-        const { data } = await axios.get(url);
-        const res = JSON.stringify(data);
-        console.log(res);
-        console.log(user_id);
-        setTickets(data);
-      };
-      console.log(url);
-      fetchTickets();
+      //const fetchTickets = async () => {
+      //const { data } = await axios.get(url);
+      //const res = JSON.stringify(data);
+      //console.log(res);
+      //console.log(user_id);
+      //setTickets(data);
+      //};
+      //console.log(url);
+      //fetchTickets();
     }
-  }, [history]);
+  }, [dispatch, history, userInfo]);
 
   return (
     <div>
@@ -123,7 +132,8 @@ const ActionScreen = ({ history }) => {
                 />
               </div>
             </div>
-
+            {error && <Message variant="danger">{error}</Message>}
+            {loading && <Loader />}
             <table id="action-table" class="table-head">
               <thead id="action-head">
                 <tr className="table-head">
@@ -136,20 +146,7 @@ const ActionScreen = ({ history }) => {
                   <th scope="col">CREATED ON</th>
                 </tr>
               </thead>
-
-              <tbody>
-                {tickets.map((ticket) => (
-                  <tr>
-                    <td key={ticket.id}></td>
-                    <td>{ticket.case_id}</td>
-                    <td>{ticket.issue}</td>
-                    <td>{ticket.issue_type}</td>
-                    <td>{ticket.submitted_by}</td>
-                    <td>{ticket.assign_to}</td>
-                    <td>{ticket.created_at}</td>
-                  </tr>
-                ))}
-              </tbody>
+              <tbody>{tickets}</tbody>
             </table>
           </div>
         </div>
