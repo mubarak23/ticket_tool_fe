@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -12,6 +12,7 @@ const ActionScreen = ({ history }) => {
 
   const dispatch = useDispatch();
   const ticketlist = useSelector((state) => state.ticketlist);
+  console.log(ticketlist);
   const { loading, error, tickets } = ticketlist;
   console.log(tickets);
 
@@ -36,16 +37,6 @@ const ActionScreen = ({ history }) => {
       console.log(tickets);
     } else {
       history.push("/");
-      //fetch data from the all ticket for login user
-      //const fetchTickets = async () => {
-      //const { data } = await axios.get(url);
-      //const res = JSON.stringify(data);
-      //console.log(res);
-      //console.log(user_id);
-      //setTickets(data);
-      //};
-      //console.log(url);
-      //fetchTickets();
     }
   }, [dispatch, history, userInfo]);
 
@@ -146,7 +137,24 @@ const ActionScreen = ({ history }) => {
                   <th scope="col">CREATED ON</th>
                 </tr>
               </thead>
-              <tbody>{tickets}</tbody>
+              <tbody>
+                {tickets &&
+                  tickets.map((ticket) => (
+                    <tr>
+                      <td key={ticket.id}></td>
+                      <td>
+                        <Link to={`/single_ticket/${ticket.case_id}`}>
+                          {ticket.case_id}
+                        </Link>
+                      </td>
+                      <td>{ticket.issue}</td>
+                      <td>{ticket.issue_type}</td>
+                      <td>{ticket.submitted_by}</td>
+                      <td>{ticket.assign_to}</td>
+                      <td>{ticket.created_at}</td>
+                    </tr>
+                  ))}
+              </tbody>
             </table>
           </div>
         </div>

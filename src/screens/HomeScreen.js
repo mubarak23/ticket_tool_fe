@@ -26,7 +26,7 @@ const HomeScreen = ({ history }) => {
   const [amount, setAmount] = useState("");
   const redirect = "/";
   useEffect(() => {
-    const userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    const userLogin = JSON.parse(localStorage.getItem("userInfo"));
     console.log(userLogin.token);
     setSubmitted_by(userLogin.full_name);
     setUser_id(userLogin.user_id);
