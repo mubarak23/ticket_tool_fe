@@ -27,8 +27,8 @@ const ActionScreen = ({ history }) => {
 
   useEffect(() => {
     setUser_id(userLogin.user_id);
-    console.log(user_id);
-    const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
+    //console.log(user_id);
+    //const url = `http://127.0.0.1:8001/api/ticket/user_ticket_lists/${user_id}`;
     //const url = "http://127.0.0.1:8001/api/ticket/user_ticket_lists/1";
     //const url = `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/1`;
     console.log(userInfo.id);
