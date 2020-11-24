@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavSide = () => {
   return (
     <div>
       <div className="sidebar">
-        <a className="active" href="posdashboard.html">
-          ISSUE TYPE
-        </a>
-        <a href="actions.html">ACTIONS</a>
+        <Link className="active" to="/home">
+          Create Ticket
+        </Link>
+        <Link to="/actions">ACTIONS</Link>
         <a href="status.html">STATUS</a>
         <a href="history.html">HISTORY</a>
       </div>
