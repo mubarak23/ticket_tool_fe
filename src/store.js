@@ -12,7 +12,7 @@ import {
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   ticketlist: myticketlistReducer,
-  singleTicket: singleTicketReducer,
+  TicketIssue: singleTicketReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

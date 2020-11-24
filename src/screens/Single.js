@@ -24,6 +24,13 @@ const Single = ({ match, history }) => {
     dispatch(singleticket(case_id));
     console.log("after dispatch is call");
   }, [dispatch, case_id]);
+
+  useEffect(() => {
+    console.log(case_id);
+    console.log("from thee useeEffect and dispatch");
+    dispatch(singleticket(case_id));
+    console.log("after dispatch is call");
+  }, [dispatch, case_id]);
   return (
     <div>
       <NavSide />

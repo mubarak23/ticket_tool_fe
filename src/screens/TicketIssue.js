@@ -1,48 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+//import { myticketlist } from "../actions/ticketActions.js";
 import { singleticket } from "../actions/ticketActions.js";
+import SingleTicket from "./SingleTicket";
 
-const SingleTicket = ({ match, history }) => {
+const TiicketIssue = ({ history, match }) => {
   const case_id = match.params.case_id;
+  const [user_id, setUser_id] = useState("");
+  //const [tickets, setTickets] = useState("");
 
   const dispatch = useDispatch();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const id = userInfo.user_id;
-  console.log(id);
-  console.log(case_id);
   console.log(userInfo);
-
   const ticket = useSelector((state) => state.TicketIssue);
   //console.log(ticket);
   const { loading, error, singleTicket } = ticket;
   console.log(singleTicket);
 
-  console.log("Before UseeEffect is call");
   useEffect(() => {
-    console.log("from dispatch modee");
-    dispatch(singleticket(case_id));
+    console.log(case_id);
+    console.log("beore useEffect");
+    //dispatch(singleticket(case_id));
+    console.log("After the dispatch");
   }, [dispatch, case_id]);
-  console.log("Afteer UseEffect is call");
-
-  //useEffect(() => {
-  // dispatch(singleticket(case_id));
-  // if (userInfo || userInfo.user_id) {
-  //  dispatch(singleticket(case_id));
-  //  console.log("this is simple");
-  //} else {
-  // history.push("/");
-  // }
-  //}, [dispatch, history, userInfo, case_id]);
-
+  console.log("after useEffect");
   return (
-    <div>
+    <>
       <NavSide />
-
       <div className="part">
         <div className="container">
           {loading ? (
@@ -277,8 +267,8 @@ const SingleTicket = ({ match, history }) => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default SingleTicket;
+export default TiicketIssue;

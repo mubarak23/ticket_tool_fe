@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { myticketlist } from "../actions/ticketActions.js";
+import { myticketlist, singleticket } from "../actions/ticketActions.js";
 
 const ActionScreen = ({ history }) => {
   const [user_id, setUser_id] = useState("");
@@ -34,6 +34,8 @@ const ActionScreen = ({ history }) => {
     console.log(userInfo.id);
     if (userLogin) {
       dispatch(myticketlist(userInfo.user_id));
+      //347957274
+      dispatch(singleticket(347957274));
       console.log(tickets);
     } else {
       history.push("/");

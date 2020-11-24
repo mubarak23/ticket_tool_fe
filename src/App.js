@@ -11,6 +11,8 @@ import Login from "./screens/LoginScreen";
 import Register from "./screens/RegisterScreen";
 import SingleTicket from "./screens/SingleTicket";
 import Single from "./screens/Single";
+import TicketIssue from "./screens/TicketIssue";
+import { singleticket } from "./actions/ticketActions";
 
 function App() {
   return (
@@ -21,10 +23,10 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/Home" component={Home} />
           <Route path="/ticket" component={Ticket} />
-          <Route path="/single_ticket/:case_id" component={Single} />
           <Route path="/actions" component={Action} />
           <Route path="/status" component={Status} />
           <Route path="/history" component={History} />
+          <Route path="/single_ticket/:case_id" component={TicketIssue} />
         </Switch>
       </Router>
     </>

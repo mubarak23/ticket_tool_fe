@@ -55,7 +55,7 @@ export const singleticket = (case_id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:8000/api/ticket/ticket_details/${userInfo.user_id}/${case_id}`,
+      `/api/ticket/ticket_details/${userInfo.user_id}/${case_id}`,
       config
     );
     dispatch({
@@ -63,13 +63,9 @@ export const singleticket = (case_id) => async (dispatch, getState) => {
       payload: data,
       //JSON.stringify(data),
     });
+    console.log(data);
+    //console.log(JSON.stringify(data));
   } catch (error) {
-    dispatch({
-      type: SINGLE_TICKET_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.response.message,
-    });
+    console.log(error);
   }
 };
