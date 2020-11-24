@@ -46,14 +46,10 @@ const NavSide = () => {
                   <div className="lhs3" style={{ display: "inline-block" }}>
                     <h6>POS</h6>
                   </div>
-                  <div className="rhs3" style={{ display: "inline-block" }}>
-                    <img
-                      alt="pos"
-                      src={process.env.PUBLIC_URL + "/img/9.jpg"}
-                      //src="../../public/img/9.jpg"
-                      className="img-fluid pos-image"
-                    />
-                  </div>
+                  <div
+                    className="rhs3"
+                    style={{ display: "inline-block" }}
+                  ></div>
                 </div>
               </a>
             </div>
@@ -63,31 +59,23 @@ const NavSide = () => {
                   <div className="lhs3" style={{ display: "inline-block" }}>
                     <h6>TRANSFER</h6>
                   </div>
-                  <div className="rhs3" style={{ display: "inline-block" }}>
-                    <img
-                      alt="transfer"
-                      src={process.env.PUBLIC_URL + "/img/10.jpg"}
-                      //src="assets/img/10.jpg"
-                      className="img-fluid pos-image1"
-                    />
-                  </div>
+                  <div
+                    className="rhs3"
+                    style={{ display: "inline-block" }}
+                  ></div>
                 </div>
               </a>
             </div>
             <div className="col-sm-3">
-              <a href="walletsdashboard.html">
-                <div className="head_link4 pos-container">
+              <a href="posdashboard.html">
+                <div className="head_link1 pos-container">
                   <div className="lhs3" style={{ display: "inline-block" }}>
-                    <h6>WALLET</h6>
+                    <h6>wallet</h6>
                   </div>
-                  <div className="" style={{ display: "inline-block" }}>
-                    <img
-                      alt="wallet"
-                      src={process.env.PUBLIC_URL + "/img/12.jpg"}
-                      //src="assets/img/12.jpg"
-                      className="img-fluid pos-image2"
-                    />
-                  </div>
+                  <div
+                    className="rhs3"
+                    style={{ display: "inline-block" }}
+                  ></div>
                 </div>
               </a>
             </div>
@@ -97,14 +85,10 @@ const NavSide = () => {
                   <div className="lhs3" style={{ display: "inline-block" }}>
                     <h6>OTHERS</h6>
                   </div>
-                  <div className="rhs3" style={{ display: "inline-block" }}>
-                    <img
-                      alt="others"
-                      src={process.env.PUBLIC_URL + "/img/11.jpg"}
-                      //src="assets/img/11.jpg"
-                      className="img-fluid pos-image3"
-                    />
-                  </div>
+                  <div
+                    className="rhs3"
+                    style={{ display: "inline-block" }}
+                  ></div>
                 </div>
               </a>
             </div>

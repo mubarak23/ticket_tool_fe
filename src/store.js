@@ -9,10 +9,13 @@ import {
   singleTicketReducer,
 } from "./reducers/ticketReducers.js";
 
+import { createActionReducer } from "./reducers/IssueReducers";
+
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   ticketlist: myticketlistReducer,
   TicketIssue: singleTicketReducer,
+  createTicketAction: createActionReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
