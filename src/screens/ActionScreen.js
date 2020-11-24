@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
+import NavSingle from "../components/NavSingle";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { myticketlist, singleticket } from "../actions/ticketActions.js";

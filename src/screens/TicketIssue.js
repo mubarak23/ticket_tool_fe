@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import NavSingle from "../components/NavSingle";
 //import { myticketlist } from "../actions/ticketActions.js";
 import { singleticket } from "../actions/ticketActions.js";
 import SingleTicket from "./SingleTicket";
@@ -41,6 +42,72 @@ const TiicketIssue = ({ history, match }) => {
             <Message variant="danger">{error}</Message>
           ) : (
             <div className="history_row">
+              <div class="search_row2">
+                <form>
+                  <div
+                    className="box1 select-input"
+                    style={{ display: "inline-block" }}
+                  >
+                    <div className="form-group">
+                      <select
+                        name="searchby"
+                        className="form-input2 select-input"
+                        id="transfer-actions"
+                      >
+                        <option>SELECT ACTION</option>
+                        <option>In Progress</option>
+                        <option>Unresolved</option>
+                        <option>Deadlock</option>
+                        <option>Resolved</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="box4" style={{ display: "inline-block" }}>
+                    <input
+                      type="button"
+                      action="post"
+                      class="butttonarea3 select-input"
+                      value="Add Action"
+                      onclick="TakeAction()"
+                      id="take-action"
+                    />
+                  </div>
+                </form>
+              </div>
+
+              <div class="search_row2">
+                <form>
+                  <div
+                    className="box1 select-input"
+                    style={{ display: "inline-block" }}
+                  >
+                    <div className="form-group">
+                      <select
+                        name="searchby"
+                        className="form-input2 select-input"
+                        id="transfer-actions"
+                      >
+                        <option>SELECT STATUS</option>
+                        <option>In Progress</option>
+                        <option>Unresolved</option>
+                        <option>Deadlock</option>
+                        <option>Resolved</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="box4" style={{ display: "inline-block" }}>
+                    <input
+                      type="button"
+                      action="post"
+                      class="butttonarea3 select-input"
+                      value="Update Status"
+                      onclick="TakeAction()"
+                      id="take-action"
+                    />
+                  </div>
+                </form>
+              </div>
+
               <div className="history_row1">
                 <div className="historylhs" style={{ float: "left" }}>
                   <p className="details">DETAILS</p>

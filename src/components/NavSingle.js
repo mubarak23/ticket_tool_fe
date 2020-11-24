@@ -110,6 +110,32 @@ const NavSingle = () => {
           </div>
         </div>
       </div>
+
+      <div className="search_row2">
+        <div className="box0" style={{ display: "inline-block" }}>
+          <input type="checkbox" />
+        </div>
+        <div className="box1" style={{ display: "inline-block" }}>
+          <div className="form-group">
+            <select
+              name="searchby"
+              className="form-input2"
+              id="transfer-actions"
+            >
+              <option>SELECT ACTION</option>
+            </select>
+          </div>
+        </div>
+        <div className="box4" style={{ display: "inline-block" }}>
+          <input
+            type="button"
+            action="post"
+            className="butttonarea3"
+            value="SUBMIT"
+            onclick="TakeAction()"
+          />
+        </div>
+      </div>
     </div>
   );
 };
