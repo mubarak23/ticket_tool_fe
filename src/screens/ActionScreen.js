@@ -34,9 +34,10 @@ const ActionScreen = ({ history }) => {
     //const url = `https://intense-escarpment-06842.herokuapp.com/api/ticket/user_ticket_lists/1`;
     console.log(userInfo.id);
     if (userLogin) {
+      //dispatch(singleticket(678904532));
       dispatch(myticketlist(userInfo.user_id));
       //347957274
-      dispatch(singleticket(347957274));
+      //dispatch(singleticket(347957274));
       console.log(tickets);
     } else {
       history.push("/");

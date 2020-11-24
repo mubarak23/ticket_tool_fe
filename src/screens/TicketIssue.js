@@ -12,6 +12,7 @@ import SingleTicket from "./SingleTicket";
 const TiicketIssue = ({ history, match }) => {
   const case_id = match.params.case_id;
   const [user_id, setUser_id] = useState("");
+  const [actions, setActions] = useState("");
   //const [tickets, setTickets] = useState("");
 
   const dispatch = useDispatch();
@@ -27,10 +28,24 @@ const TiicketIssue = ({ history, match }) => {
   useEffect(() => {
     console.log(case_id);
     console.log("beore useEffect");
-    //dispatch(singleticket(case_id));
+    dispatch(singleticket(case_id));
     console.log("After the dispatch");
   }, [dispatch, case_id]);
   console.log("after useEffect");
+
+  const handleActionSubmit = (e) => {
+    e.preventDefault();
+    console.log("from action handle");
+    const data = {
+      case_id,
+      user_id: singleTicket.user_id,
+      issue_type: singleTicket.issue_type,
+      assign_to: singleTicket.assign_to,
+      submitted_by: singleTicket.submitted_by,
+      actions,
+    };
+    console.log(data);
+  };
   return (
     <>
       <NavSide />
@@ -43,7 +58,7 @@ const TiicketIssue = ({ history, match }) => {
           ) : (
             <div className="history_row">
               <div class="search_row2">
-                <form>
+                <form onSubmit={handleActionSubmit}>
                   <div
                     className="box1 select-input"
                     style={{ display: "inline-block" }}
@@ -53,23 +68,21 @@ const TiicketIssue = ({ history, match }) => {
                         name="searchby"
                         className="form-input2 select-input"
                         id="transfer-actions"
+                        onChange={(e) => setActions(e.target.value)}
                       >
                         <option>SELECT ACTION</option>
-                        <option>In Progress</option>
-                        <option>Unresolved</option>
-                        <option>Deadlock</option>
-                        <option>Resolved</option>
+                        <option value="In progress">In Progress</option>
+                        <option value="Unresolved">Unresolved</option>
+                        <option value="Deadlock">Deadlock</option>
+                        <option value="Resolved">Resolved</option>
                       </select>
                     </div>
                   </div>
                   <div className="box4" style={{ display: "inline-block" }}>
                     <input
-                      type="button"
-                      action="post"
-                      class="butttonarea3 select-input"
+                      type="submit"
+                      className="butttonarea3 select-input"
                       value="Add Action"
-                      onclick="TakeAction()"
-                      id="take-action"
                     />
                   </div>
                 </form>
