@@ -1,43 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { singleticket } from "../actions/ticketActions.js";
 
-const SingleTicket = ({ match, history }) => {
+const Single = ({ match, history }) => {
   const case_id = match.params.case_id;
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const id = userInfo.user_id;
-  console.log(id);
-  console.log(case_id);
-  console.log(userInfo);
-
   const ticket = useSelector((state) => state.singleTicket);
   console.log(ticket);
   const { loading, error, singleTicket } = ticket;
   console.log(singleTicket);
-
-  console.log("Before UseeEffect is call");
+  console.log(id);
+  console.log(case_id);
   useEffect(() => {
-    console.log("from dispatch modee");
+    console.log(case_id);
+    console.log("from thee useeEffect and dispatch");
+    dispatch(singleticket(case_id));
+    console.log("after dispatch is call");
   }, [dispatch, case_id]);
-  console.log("Afteer UseEffect is call");
-
-  //useEffect(() => {
-  // dispatch(singleticket(case_id));
-  // if (userInfo || userInfo.user_id) {
-  //  dispatch(singleticket(case_id));
-  //  console.log("this is simple");
-  //} else {
-  // history.push("/");
-  // }
-  //}, [dispatch, history, userInfo, case_id]);
-
   return (
     <div>
       <NavSide />
@@ -280,4 +266,4 @@ const SingleTicket = ({ match, history }) => {
   );
 };
 
-export default SingleTicket;
+export default Single;
