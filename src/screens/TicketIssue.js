@@ -14,6 +14,7 @@ const TiicketIssue = ({ history, match }) => {
   const case_id = match.params.case_id;
   const [user_id, setUser_id] = useState("");
   const [actions, setActions] = useState("");
+  const [status, setStatus] = useState("");
   //const [tickets, setTickets] = useState("");
 
   const dispatch = useDispatch();
@@ -58,6 +59,12 @@ const TiicketIssue = ({ history, match }) => {
     dispatch(createAction(data));
     console.log("after dispatch is called");
   };
+
+  const handleStatusUpdate = (e) => {
+    e.preventDefault();
+    console.log("from the status update function");
+  };
+
   return (
     <>
       <NavSide />
@@ -83,10 +90,16 @@ const TiicketIssue = ({ history, match }) => {
                         onChange={(e) => setActions(e.target.value)}
                       >
                         <option>SELECT ACTION</option>
-                        <option value="In progress">In Progress</option>
-                        <option value="Unresolved">Unresolved</option>
-                        <option value="Deadlock">Deadlock</option>
-                        <option value="Resolved">Resolved</option>
+                        <option value="Check with the Bank">
+                          Check with the Bank
+                        </option>
+                        <option value="Restart the device">
+                          Restart the device
+                        </option>
+                        <option value="Install a New App">
+                          Install a New App
+                        </option>
+                        <option value="clear app cache">Clear app cache</option>
                       </select>
                     </div>
                   </div>
@@ -101,7 +114,7 @@ const TiicketIssue = ({ history, match }) => {
               </div>
 
               <div class="search_row2">
-                <form>
+                <form onSubmit={handleStatusUpdate}>
                   <div
                     className="box1 select-input"
                     style={{ display: "inline-block" }}
@@ -111,23 +124,21 @@ const TiicketIssue = ({ history, match }) => {
                         name="searchby"
                         className="form-input2 select-input"
                         id="transfer-actions"
+                        onChange={(e) => setStatus(e.target.value)}
                       >
                         <option>SELECT STATUS</option>
-                        <option>In Progress</option>
-                        <option>Unresolved</option>
-                        <option>Deadlock</option>
-                        <option>Resolved</option>
+                        <option value="In progress">In Progress</option>
+                        <option value="Unresolved">Unresolved</option>
+                        <option value="Deadlock">Deadlock</option>
+                        <option value="Resolved">Resolved</option>
                       </select>
                     </div>
                   </div>
                   <div className="box4" style={{ display: "inline-block" }}>
                     <input
-                      type="button"
-                      action="post"
+                      type="submit"
                       class="butttonarea3 select-input"
                       value="Update Status"
-                      onclick="TakeAction()"
-                      id="take-action"
                     />
                   </div>
                 </form>
