@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import NavSingle from "../components/NavSingle";
 //import { myticketlist } from "../actions/ticketActions.js";
 import { singleticket } from "../actions/ticketActions.js";
+import { createAction } from "../actions/IssueAction.js";
 import SingleTicket from "./SingleTicket";
 
 const TiicketIssue = ({ history, match }) => {
@@ -25,12 +26,20 @@ const TiicketIssue = ({ history, match }) => {
   const { loading, error, singleTicket } = ticket;
   console.log(singleTicket);
 
+  const TicketAction = useSelector((state) => state.createTicketAction);
+  const {
+    loading: loadedaction,
+    success: successaction,
+    error: erroraction,
+    actionDetails: action,
+  } = TicketAction;
+
   useEffect(() => {
     console.log(case_id);
     console.log("beore useEffect");
     dispatch(singleticket(case_id));
     console.log("After the dispatch");
-  }, [dispatch, case_id]);
+  }, [dispatch, case_id, successaction]);
   console.log("after useEffect");
 
   const handleActionSubmit = (e) => {
@@ -42,9 +51,12 @@ const TiicketIssue = ({ history, match }) => {
       issue_type: singleTicket.issue_type,
       assign_to: singleTicket.assign_to,
       submitted_by: singleTicket.submitted_by,
+      issue: singleTicket.issue,
       actions,
     };
     console.log(data);
+    dispatch(createAction(data));
+    console.log("after dispatch is called");
   };
   return (
     <>

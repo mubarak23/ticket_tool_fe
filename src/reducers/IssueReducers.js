@@ -11,7 +11,7 @@ export const createActionReducer = (state = {}, action) => {
     case TICKET_ACTION_REQUEST:
       return { loading: true };
     case TICKET_ACTION_SUCCESS:
-      return { loading: false, actionDetails: action.payload };
+      return { loading: false, success: true, actionDetails: action.payload };
     case TICKET_LISTS_FAIL:
       return { loading: false, error: action.payload };
     case TICKET_ACTION_RESET:
