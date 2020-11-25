@@ -10,7 +10,10 @@ import {
   updateTicketStatusReducer,
 } from "./reducers/ticketReducers.js";
 
-import { createActionReducer } from "./reducers/IssueReducers";
+import {
+  createActionReducer,
+  actionticketlistReducer,
+} from "./reducers/IssueReducers";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -18,6 +21,7 @@ const reducer = combineReducers({
   TicketIssue: singleTicketReducer,
   createTicketAction: createActionReducer,
   updateticketstatus: updateTicketStatusReducer,
+  actionticketlist: actionticketlistReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
