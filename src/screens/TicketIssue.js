@@ -6,9 +6,8 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import NavSingle from "../components/NavSingle";
 //import { myticketlist } from "../actions/ticketActions.js";
-import { singleticket } from "../actions/ticketActions.js";
+import { singleticket, updateticketstatus } from "../actions/ticketActions.js";
 import { createAction } from "../actions/IssueAction.js";
-import SingleTicket from "./SingleTicket";
 
 const TiicketIssue = ({ history, match }) => {
   const case_id = match.params.case_id;
@@ -35,12 +34,19 @@ const TiicketIssue = ({ history, match }) => {
     actionDetails: action,
   } = TicketAction;
 
+  const updateTicket = useSelector((state) => state.updateticketstatus);
+  const {
+    loading: loadedstatus,
+    success: successstatus,
+    error: errorstatus,
+  } = updateTicket;
+
   useEffect(() => {
     console.log(case_id);
     console.log("beore useEffect");
     dispatch(singleticket(case_id));
     console.log("After the dispatch");
-  }, [dispatch, case_id, successaction]);
+  }, [dispatch, case_id, successaction, successstatus]);
   console.log("after useEffect");
 
   const handleActionSubmit = (e) => {
@@ -63,6 +69,14 @@ const TiicketIssue = ({ history, match }) => {
   const handleStatusUpdate = (e) => {
     e.preventDefault();
     console.log("from the status update function");
+    const statusdata = {
+      case_id,
+      user_id: singleTicket.user_id,
+      status,
+    };
+    console.log(statusdata);
+    dispatch(updateticketstatus(statusdata));
+    console.log("after update ticket status");
   };
 
   return (
@@ -149,7 +163,7 @@ const TiicketIssue = ({ history, match }) => {
                   <p className="details">DETAILS</p>
                 </div>
                 <div className="historyrhs" style={{ float: "right" }}>
-                  <p id="status">SOLVED</p>
+                  <p id="status">{singleTicket.status}</p>
                 </div>
               </div>
 

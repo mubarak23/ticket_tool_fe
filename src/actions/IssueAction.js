@@ -30,12 +30,12 @@ export const createAction = (action) => async (dispatch, getState) => {
     });
   } catch (error) {
     console.log(error);
-    //dispatch({
-    //type: TICKET_ACTION_FAIL,
-    //payload:
-    // error.response && error.response.data.message
-    //  ? error.response.data.message
-    //    : error.response.message,
-    //});
+    dispatch({
+      type: TICKET_ACTION_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.response.message,
+    });
   }
 };
