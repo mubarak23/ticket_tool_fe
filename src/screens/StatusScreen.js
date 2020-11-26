@@ -1,7 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import NavSide from "../components/NavSide";
-const StatusScreen = () => {
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import { actionticketlist } from "../actions/IssueAction";
+const StatusScreen = ({ history }) => {
   //actionticketlist
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const actionlists = useSelector((state) => state.actionticketlist);
+  const { loading, error, ticketactions } = actionlists;
+  console.log(ticketactions);
+
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(actionticketlist(userInfo.user_id));
+    } else {
+      history.push("/");
+    }
+  }, [userInfo, dispatch, history]);
 
   return (
     <div>
@@ -86,10 +106,12 @@ const StatusScreen = () => {
                 />
               </div>
             </div>
-
+            {error && <Message variant="danger">{error}</Message>}
+            {loading && <Loader />}
             <table id="action-table" class="table-head">
               <thead id="action-head">
                 <tr className="table-head">
+                  <th scope="col"></th>
                   <th scope="col">CASE ID</th>
                   <th scope="col">ISSUE</th>
                   <th scope="col">ISSUE TYPE</th>
@@ -99,14 +121,22 @@ const StatusScreen = () => {
                 </tr>
               </thead>
               <tbody class="action-body">
-                <tr>
-                  <td>this is good </td>
-                  <td>this is good </td>
-                  <td>this is good </td>
-                  <td>this is good </td>
-                  <td>this is good </td>
-                  <td>this is good </td>
-                </tr>
+                {ticketactions &&
+                  ticketactions.map((action) => (
+                    <tr>
+                      <td key={action.id}></td>
+                      <td>
+                        <Link to={`/single_ticket/${action.case_id}`}>
+                          {action.case_id}
+                        </Link>
+                      </td>
+                      <td> {action.issue} </td>
+                      <td>{action.issue_type}</td>
+                      <td>{action.submitted_by}</td>
+                      <td>{action.assign_to}</td>
+                      <td>{action.actions} </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
