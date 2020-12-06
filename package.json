@@ -1,6 +1,6 @@
 {
   "name": "ticket_tool_fe",
-  "proxy": "http://localhost:8003/",
+  "proxy": "https://intense-escarpment-06842.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
